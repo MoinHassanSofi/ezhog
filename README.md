@@ -178,4 +178,3 @@ npm run start
    - **Key**: `GEMINI_API_KEY`
    - **Value**: `[Your Gemini API Key]`
 4. Deploy. Next.js App Router will automatically route `POST /api/quiz/generate` securely through Vercel Serverless Functions.
-# ezhog
