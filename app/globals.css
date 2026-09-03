@@ -1,26 +1,68 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --brand-orange: #FF7A1B;
+    --brand-orange-hover: #E86507;
+    --brand-orange-light: #FFF5EE;
+    --brand-peach-bg: #FFF8F4;
+    --ez-text-dark: #0F172A;
+    --ez-text-muted: #64748B;
+    --ez-border: #E2E8F0;
+  }
+
+  body {
+    background-color: #FFFFFF;
+    color: var(--ez-text-dark);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    -webkit-font-smoothing: antialiased;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Custom visual utilities matching EZHog screenshots */
+.hero-gradient-bg {
+  background: linear-gradient(180deg, #FFF6F0 0%, #FFFFFF 100%);
+}
+
+.ez-card-shadow {
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.04), 0 4px 12px -2px rgba(0, 0, 0, 0.02);
+}
+
+.ez-orange-glow {
+  box-shadow: 0 4px 20px rgba(255, 122, 27, 0.25);
+}
+
+.ez-pill-border {
+  border: 1px solid #FFD8BE;
+}
+
+/* EZHog Moving Glowing Border Effect */
+@property --rot {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@keyframes borderRotate {
+  to {
+    --rot: 1;
+  }
+}
+
+.flowing-border {
+  --rot: 0;
+  background: conic-gradient(
+    from calc(var(--rot) * 1turn),
+    #E66A0E 11.8%,
+    #FEF8ED 23.42%,
+    rgba(37, 37, 56, 0.5) 50.64%
+  );
+  animation: borderRotate 2.5s linear infinite;
+  will-change: background;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.flowing-border:focus-within {
+  animation-play-state: paused;
 }
